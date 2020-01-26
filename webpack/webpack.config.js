@@ -5,7 +5,20 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './../dist'),
+        publicPath: 'http://localhost:9090/',
         filename: './index_bundle.js'
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        historyApiFallback: true,
+        hot: true,
+        open: true,
+        https: false,
+        noInfo: false,
+        port: 9090,
+        host: 'localhost',
+        disableHostCheck: true
     },
     module: {
         rules: [
@@ -29,28 +42,3 @@ module.exports = {
         })
     ]
 }
-
-
-// module.exports = {
-//     entry: './src/index.js',
-//     output: {
-//         path: path.join(__dirname, '/dist'),
-//         filename: 'index_bundle.js'
-//     },
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.js$/,
-//                 exclude: /node_modules/,
-//                 use: {
-//                     loader: "babel-loader"
-//                 }
-//             }
-//         ]
-//     },
-//     plugins:[
-//         new HtmlWebpackPlugin({
-//             template: './src/index.html'
-//         })
-//     ]
-// }
